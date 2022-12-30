@@ -2,16 +2,15 @@ package pl.utkala.buttonfilters.data
 
 import pl.utkala.buttonfilters.model.Job
 import pl.utkala.buttonfilters.model.Person
-import pl.utkala.buttonfilters.ui.FilterType
 
 interface Filterable<T> {
     fun filter(list: List<T>): List<T>
 }
 
-sealed class FilterablePerson(val type: FilterType) : Filterable<Person> {
+sealed class FilterablePerson() : Filterable<Person> {
     var isEnabled: Boolean = true
 
-    class PersonNameFilter(condition: String) : FilterablePerson(FilterType.INPUT_TEXT) {
+    class PersonNameFilter(condition: String) : FilterablePerson() {
         var condition = condition
             set(value) {
                 isEnabled = value.isNotBlank()
@@ -26,7 +25,7 @@ sealed class FilterablePerson(val type: FilterType) : Filterable<Person> {
         }
     }
 
-    class PersonSurnameFilter(condition: String) : FilterablePerson(FilterType.INPUT_TEXT) {
+    class PersonSurnameFilter(condition: String) : FilterablePerson() {
         var condition = condition
             set(value) {
                 isEnabled = value.isNotBlank()
@@ -42,7 +41,7 @@ sealed class FilterablePerson(val type: FilterType) : Filterable<Person> {
         }
     }
 
-    class PersonJobsFilter(condition: List<Job>?) : FilterablePerson(FilterType.CHECKBOX) {
+    class PersonJobsFilter(condition: List<Job>?) : FilterablePerson() {
         var condition = condition
             set(value) {
                 isEnabled = value?.isEmpty() == false
@@ -58,7 +57,7 @@ sealed class FilterablePerson(val type: FilterType) : Filterable<Person> {
         }
     }
 
-    class UnemployedPersonFilter(state: Boolean) : FilterablePerson(FilterType.TOGGLE) {
+    class UnemployedPersonFilter(state: Boolean) : FilterablePerson() {
         init {
             isEnabled = state
         }
