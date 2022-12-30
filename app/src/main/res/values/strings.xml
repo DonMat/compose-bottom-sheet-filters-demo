@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Button Filters</string>
+    <string name="filter_jobs">Filter Jobs</string>
+    <string name="filter_names">Filter names</string>
+    <string name="filter_surnames">Filter surnames</string>
+    <string name="filter_unemployed">Unemployed</string>
 </resources>
